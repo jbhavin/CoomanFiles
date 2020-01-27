@@ -1,0 +1,48 @@
+PODS:
+  - Alamofire (4.9.0)
+  - IHProgressHUD (0.1.4)
+  - ImageSlideshow (1.8.3):
+    - ImageSlideshow/Core (= 1.8.3)
+  - ImageSlideshow/Core (1.8.3)
+  - ImageSlideshow/SDWebImage (1.8.3):
+    - ImageSlideshow/Core
+    - SDWebImage (>= 3.7)
+  - IQKeyboardManagerSwift (6.5.1)
+  - LGSideMenuController (2.1.1)
+  - ReachabilitySwift (4.3.1)
+  - SDWebImage (5.2.2):
+    - SDWebImage/Core (= 5.2.2)
+  - SDWebImage/Core (5.2.2)
+
+DEPENDENCIES:
+  - Alamofire
+  - IHProgressHUD
+  - ImageSlideshow
+  - ImageSlideshow/SDWebImage
+  - IQKeyboardManagerSwift
+  - LGSideMenuController
+  - ReachabilitySwift
+  - SDWebImage
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - IHProgressHUD
+    - ImageSlideshow
+    - IQKeyboardManagerSwift
+    - LGSideMenuController
+    - ReachabilitySwift
+    - SDWebImage
+
+SPEC CHECKSUMS:
+  Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
+  IHProgressHUD: a01846bfbb581c761c79747c67b08387c3bdfae3
+  ImageSlideshow: 4694d7d699a1549582e7cc631fb392d8f91630f3
+  IQKeyboardManagerSwift: 9ac7524fad9f9fe9a3b98c927e7772471ca546d2
+  LGSideMenuController: ae40c80983ab8b8801c7cef0a6804d43aaa72d45
+  ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
+  SDWebImage: 5fcdb02cc35e05fc35791ec514b191d27189f872
+
+PODFILE CHECKSUM: 49abfaa4debdef7a34e2d5d32c70ca980e59158a
+
+COCOAPODS: 1.8.4
