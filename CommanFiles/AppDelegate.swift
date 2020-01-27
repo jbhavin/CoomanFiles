@@ -32,7 +32,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //               cell?.selectionStyle = .none
 //
         
+    //self.collectionViewProducts.register(UINib(nibName: "ProductCell", bundle: nil), forCellWithReuseIdentifier: "ProductCell")
         
+        
+    //    let cell: ProductCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCell", for: indexPath) as! ProductCell
+        
+        
+        //        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        //        let vc = storyboard.instantiateViewController(withIdentifier: "CategoriesListVC") as? CategoriesListVC
+        //        self.navigationController?.isNavigationBarHidden = false
+        //        self.navigationController?.pushViewController(vc!, animated: true)
+
+    
         return true
     }
 
