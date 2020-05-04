@@ -25,7 +25,7 @@ class AFWrapper: NSObject
         print(apikey)
         
         let strURL = Constants.BASE_URL + apikey
-        let url = URL(string: strURL)
+        let url = URL(string: apikey)
         let manager = Alamofire.SessionManager.default
         manager.session.configuration.timeoutIntervalForRequest = 120
         manager.request(url!, method: .post, parameters: params)

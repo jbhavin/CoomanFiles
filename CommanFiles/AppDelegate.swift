@@ -21,27 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         IQKeyboardManager.shared.enable = true
         
-//
-//        var cell = tableView.dequeueReusableCell(withIdentifier: "TrackOrderCell") as? TrackOrderCell
-//               if cell == nil {
-//                   let nib = Bundle.main.loadNibNamed("TrackOrderCell", owner: self, options: nil)
-//                   cell = nib?[0] as? TrackOrderCell
-//               }
-//               cell?.layer.shouldRasterize = true
-//               cell?.layer.rasterizationScale = UIScreen.main.scale
-//               cell?.selectionStyle = .none
-//
-        
-    //self.collectionViewProducts.register(UINib(nibName: "ProductCell", bundle: nil), forCellWithReuseIdentifier: "ProductCell")
-        
-        
-    //    let cell: ProductCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCell", for: indexPath) as! ProductCell
-        
-        
-        //        let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        //        let vc = storyboard.instantiateViewController(withIdentifier: "CategoriesListVC") as? CategoriesListVC
-        //        self.navigationController?.isNavigationBarHidden = false
-        //        self.navigationController?.pushViewController(vc!, animated: true)
 
     
         return true
@@ -87,6 +66,100 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //
 //        UIApplication.shared.windows.first?.rootViewController = sideMenuController
 //        UIApplication.shared.windows.first?.makeKeyAndVisible()
+        
+        
+        
+        @IBAction func btnEventGalleryTapped(_ sender: Any) {
+                let vc = BSImagePickerViewController()
+                vc.maxNumberOfSelections = 3
+                
+                bs_presentImagePickerController(vc, animated: true,
+                                                select: { (asset: PHAsset) -> Void in
+                                                    // User selected an asset.
+                                                    // Do something with it, start upload perhaps?
+                }, deselect: { (asset: PHAsset) -> Void in
+                    // User deselected an assets.
+                    // Do something, cancel upload?
+                }, cancel: { (assets: [PHAsset]) -> Void in
+                    // User cancelled. And this where the assets currently selected.
+                }, finish: { (assets: [PHAsset]) -> Void in
+                    // User finished with these assets
+                    //            print("Finish: \(assets)")
+                    //            print("Finish1: \(assets[0])")
+                    //            let img1 = self.getAssetThumbnail(asset: assets[0])
+                    //            self.image1.image = img1
+                    //            let img2 = self.getAssetThumbnail(asset: assets[1])
+                    //            self.image2.image = img2
+                    //            let img3 = self.getAssetThumbnail(asset: assets[2])
+                    //            self.image3.image = img3
+                    //            print("Finish2: \(assets[1])")
+                    //            print("Finish3: \(assets[2])")
+                    
+                    self.arrImageData.removeAll()
+                    self.imgArray.removeAll()
+                    
+                    if assets.count == 1{
+                        let img1 = self.getAssetThumbnail(asset: assets[0])
+                        let data1 = img1.jpegData(compressionQuality: 0.1)
+                        self.arrImageData.append(data1!)
+                        self.fileName.append("File1")
+                    }
+                    else if assets.count == 2{
+                        let img1 = self.getAssetThumbnail(asset: assets[0])
+                        let data1 = img1.jpegData(compressionQuality: 0.1)
+                        self.arrImageData.append(data1!)
+                        
+                        let img2 = self.getAssetThumbnail(asset: assets[1])
+                        let data2 = img2.jpegData(compressionQuality: 0.1)
+                        self.arrImageData.append(data2!)
+                        self.fileName.append("File1,File2")
+                    }
+                    else if assets.count == 3{
+                        let img1 = self.getAssetThumbnail(asset: assets[0])
+                        let data1 = img1.jpegData(compressionQuality: 0.1)
+                        self.arrImageData.append(data1!)
+                        
+                        let img2 = self.getAssetThumbnail(asset: assets[1])
+                        let data2 = img2.jpegData(compressionQuality: 0.1)
+                        self.arrImageData.append(data2!)
+                        
+                        let img3 = self.getAssetThumbnail(asset: assets[2])
+                        let data3 = img3.jpegData(compressionQuality: 0.1)
+                        self.arrImageData.append(data3!)
+                        self.fileName.append("File1,File2,File3")
+                    }
+                    
+                    for i in 0..<assets.count{
+                        let img1 = self.getAssetThumbnail(asset: assets[i])
+                        
+                        self.imgArray.append(img1)
+                    }
+                    
+                    if self.imgArray.count > 2{
+                        self.imgCollectionViewHeight.constant = 320
+                    }
+                    else{
+                        self.imgCollectionViewHeight.constant = 150
+                    }
+                    
+                    self.viewAddGallery.isHidden = true
+                    self.collectionViewImage.delegate = self
+                    self.collectionViewImage.dataSource = self
+                    self.collectionViewImage.reloadData()
+                }, completion: nil)
+            }
+
+        func getAssetThumbnail(asset: PHAsset) -> UIImage {
+                let manager = PHImageManager.default()
+                let option = PHImageRequestOptions()
+                var thumbnail = UIImage()
+                option.isSynchronous = true
+                manager.requestImage(for: asset, targetSize: CGSize(width: asset.pixelWidth, height: asset.pixelHeight), contentMode: .aspectFit, options: option, resultHandler: {(result, info)->Void in
+                    thumbnail = result!
+                })
+                return thumbnail
+            }
+        
     }
 }
 
